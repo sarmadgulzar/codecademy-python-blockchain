@@ -1,4 +1,3 @@
-# imports the Block class from block.py
 from block import Block
 
 
@@ -40,3 +39,11 @@ class Blockchain:
                 )
                 return False
         return True
+
+    def proof_of_work(self, block, difficulty=2):
+        proof = block.generate_hash()
+        while not proof.startswith("0" * difficulty):
+            block.nonce += 1
+            proof = block.generate_hash()
+        block.nonce = 0
+        return proof
