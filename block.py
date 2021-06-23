@@ -10,10 +10,11 @@ class Block:
         self.nonce = nonce
         self.hash = self.generate_hash()
 
-    def print_block(self):
+    def print_contents(self):
         print("timestamp:", self.timestamp)
         print("transactions:", self.transactions)
         print("current hash:", self.generate_hash())
+        print("previous hash:", self.previous_hash)
 
     def generate_hash(self):
         block_contents = (
