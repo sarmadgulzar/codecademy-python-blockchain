@@ -8,4 +8,18 @@ class Blockchain:
         self.genesis_block()
 
     def genesis_block(self):
-        self.chain.append(Block([], "0"))
+        transactions = {}
+        genesis_block = Block(transactions, "0")
+        self.chain.append(genesis_block)
+        return self.chain
+
+    def print_blocks(self):
+        for i in range(len(self.chain)):
+            current_block = self.chain[i]
+            print("Block {} {}".format(i, current_block))
+            current_block.print_contents()
+
+    def add_block(self, transactions):
+        previous_block_hash = self.chain[len(self.chain) - 1].hash
+        new_block = Block(transactions, previous_block_hash)
+        self.chain.append(new_block)
